@@ -21,7 +21,7 @@ def calcular_frecuencia_digitos(dni_str):
     Returns:
         dict: Un diccionario donde la clave es el dígito y el valor es su frecuencia.
     """
-    frecuencias = {str(i): 0 for i in range(10)}  # Inicializa todas las frecuencias en 0
+    frecuencias = {str(i): 0 for i in range(10)}
     for digito in dni_str:
         if digito.isdigit():
             frecuencias[digito] += 1
@@ -73,8 +73,8 @@ def realizar_operaciones_dni(lista_dni_str):
             interseccion_total = interseccion_total.intersection(conjuntos_dnis[i])
         print(f"Intersección de todos los conjuntos: {interseccion_total}")
 
-        # Diferencias y Diferencias Simétricas (entre pares)
-        print("\nDiferencias y Diferencias Simétricas (Entre Pares)")
+        # Diferencias y Diferencias Simétricas
+        print("\nDiferencias y Diferencias Simétricas")
         for i in range(len(conjuntos_dnis)):
             for j in range(i + 1, len(conjuntos_dnis)):
                 conjunto1 = conjuntos_dnis[i]
@@ -84,6 +84,9 @@ def realizar_operaciones_dni(lista_dni_str):
                 print(f"  Diferencia (Conjunto {i + 1} - Conjunto {j + 1}): {conjunto1.difference(conjunto2)}")
                 print(f"  Diferencia (Conjunto {j + 1} - Conjunto {i + 1}): {conjunto2.difference(conjunto1)}")
                 print(f"  Diferencia Simétrica (Conjunto {i + 1} Δ Conjunto {j + 1}): {conjunto1.symmetric_difference(conjunto2)}")
+                print(f"  Diferencia Simétrica (Conjunto {j + 1} Δ Conjunto {i + 1}): {conjunto2.symmetric_difference(conjunto1)}")
+                print(f"  La Diferencia Simétrica es Conmutativa.")
+
     else:
         print("Se necesitan al menos 2 DNI para realizar operaciones de unión, intersección y diferencias entre pares.")
         if conjuntos_dnis:  # Si hay al menos un DNI
@@ -120,7 +123,7 @@ def realizar_operaciones_dni(lista_dni_str):
     else:
         print("CONDI1CION: No hay conjuntos de DNI para evaluar dígitos compartidos.")
 
-    # CONDICION2: Si algún conjunto tiene más de 6 elementos (ejemplo original de consigna)
+    # CONDICION2: Si algún conjunto tiene más de 6 elementos
     diversidad_alta = False
     for i, conjunto in enumerate(conjuntos_dnis):
         if len(conjunto) > 6:
@@ -147,7 +150,7 @@ def realizar_operaciones_dni(lista_dni_str):
     # CONDICION4: Si ninguno de los conjuntos de DNI contiene el dígito 0
     grupo_sin_ceros = True
     if not conjuntos_dnis:
-        grupo_sin_ceros = False  # No hay conjuntos, la condición no aplica
+        grupo_sin_ceros = False
     else:
         for i, conjunto in enumerate(conjuntos_dnis):
             if 0 in conjunto:
@@ -173,7 +176,7 @@ def es_bisiesto(year):
     return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
 
 
-def calcular_edad(year_nacimiento, current_year=AÑO_ACTUAL):
+def calcular_edad(anio_nacimiento, anio_corriente=AÑO_ACTUAL):
     """
     Calcula la edad aproximada dado un año de nacimiento y el año actual.
     Args:
@@ -182,7 +185,7 @@ def calcular_edad(year_nacimiento, current_year=AÑO_ACTUAL):
     Returns:
         int: La edad calculada.
     """
-    return current_year - year_nacimiento
+    return anio_corriente - anio_nacimiento
 
 
 def realizar_operaciones_anios(lista_anios_nacimiento):
@@ -222,7 +225,7 @@ def realizar_operaciones_anios(lista_anios_nacimiento):
             break
 
     if todos_despues_2000 and lista_anios_nacimiento:
-        print("CONDICION5: ¡Grupo Z! Todos nacieron después del año 2000.")
+        print("CONDICION5: Grupo Z: Todos nacieron después del año 2000.")
     elif lista_anios_nacimiento:
         print("CONDICION5: No todos nacieron después del año 2000.")
     else:
